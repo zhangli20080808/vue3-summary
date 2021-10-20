@@ -5,6 +5,13 @@
     <p>{{ selectId }}</p>
     <p>selectKeys: {{ selectKeys }}</p>
     <p>allTime : {{ allTime }}</p>
+    <div>
+      <p>组件库测试</p>
+      <l-text tag="h2" text='hello world'></l-text>
+      <l-image
+        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic2.zhimg.com%2Fv2-f3cb85d3ca5d58e80142a58e4cdb2c57_1200x500.jpg&refer=http%3A%2F%2Fpic2.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637318586&t=a745202ad33a3451a089c8fc190d13b6"
+      ></l-image>
+    </div>
   </div>
   <router-view />
 </template>

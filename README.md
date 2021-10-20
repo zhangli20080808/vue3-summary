@@ -1,24 +1,9 @@
 # vue3-summary
 
-## Project setup
-```
-yarn install
-```
+## 本地组件库调试
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+<!-- 会在本地的node_modules下面链接到全局，在链接到项 -->
+npm link [组件库名]
+npm link lego-bricks-wcc
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+npm i lego-bricks-wcc --loglevel verbose

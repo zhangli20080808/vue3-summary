@@ -1,13 +1,17 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home1</router-link> |
+    <router-link to="/">Home1</router-link>
+    |
     <router-link to="/about">About</router-link>
     <p>{{ selectId }}</p>
     <p>selectKeys: {{ selectKeys }}</p>
     <p>allTime : {{ allTime }}</p>
+    <p>逻辑复用</p>
+    <MousePosition v-if="flag" />
+    <button @click="changFlag">change flag</button>
     <div>
       <p>组件库测试</p>
-      <l-text tag="h2" text='hello world'></l-text>
+      <l-text tag="h2" text="hello world"></l-text>
       <l-image
         src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic2.zhimg.com%2Fv2-f3cb85d3ca5d58e80142a58e4cdb2c57_1200x500.jpg&refer=http%3A%2F%2Fpic2.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637318586&t=a745202ad33a3451a089c8fc190d13b6"
       ></l-image>
@@ -19,6 +23,8 @@
 import { computed, reactive, toRefs, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
+import MousePosition from './components/MousePosition'
+
 export default {
   setup (props, context) {
     // attrs slots emit  0 包装成{ value:0 }
@@ -48,6 +54,19 @@ export default {
     return {
       ...toRefs(state) // 保证数据是响应式的 还有解构的功能,
     }
+  },
+  data () {
+    return {
+      flag: true
+    }
+  },
+  methods: {
+    changFlag () {
+      this.flag = !this.flag
+    }
+  },
+  components: {
+    MousePosition
   }
 }
 </script>

@@ -8,6 +8,7 @@ npm link lego-bricks-wcc
 
 npm i lego-bricks-wcc --loglevel verbose
 
+
 ## Composition Api
 1. 带来了什么？针对复杂项目
    a. 更好的代码组织 - 代码乱->清晰性的体现
@@ -19,4 +20,12 @@ npm i lego-bricks-wcc --loglevel verbose
 3. 更好的类型推导
 [可复用&组合](https://v3.cn.vuejs.org/guide/composition-api-introduction.html#watch-%E5%93%8D%E5%BA%94%E5%BC%8F%E6%9B%B4%E6%94%B9)
 
+## Composition Api实现逻辑复用
+1. 抽离逻辑代码到一个函数
+2. 函数命令约定为 useXxx 格式(react hooks 也是) 
+3. 在setup中引用 useXxx 函数
+
 ## 如何理解 ref toRef toRefs
+1. 是什么
+2. 最佳使用方式
+3. 进阶、深入理解

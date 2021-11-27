@@ -23,9 +23,12 @@ npm i lego-bricks-wcc --loglevel verbose
 ## Composition Api实现逻辑复用
 1. 抽离逻辑代码到一个函数
 2. 函数命令约定为 useXxx 格式(react hooks 也是) 
-3. 在setup中引用 useXxx 函数
+3. 在setup中引用 useXxx 函数 - 尽量使用ref和toRefs返回数据，不要用 reactive的原始数据返回
 
 ## 如何理解 ref toRef toRefs
 1. 是什么
+   a. 生成值类型的响应式数据
+   b. 可用于模板和reactive
+   c. 通过.value修改值
 2. 最佳使用方式
 3. 进阶、深入理解

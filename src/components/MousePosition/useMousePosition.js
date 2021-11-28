@@ -54,7 +54,7 @@ function useMousePosition () {
 
 //   return state
 //   return toRefs(state)  通过 toRefs 将state打包返回，外部仍然是可以使用结构的方式取值的
-//   两种方式 1. 通过 ref 去定义  2. 通过 toRefs去返回 注意：合成函数一般返回的都是一堆ref 
+//   两种方式 1. 通过 ref 去定义  2. 通过 toRefs去返回 注意：合成函数一般返回的都是一堆ref
 // }
 
 export default useMousePosition

@@ -1,5 +1,35 @@
-# vue3-summary
+## vue3整体 vue-next
+1. vue3可以说对vue的程序应该如何写，重新下了定义
+* JSX 
+* Typescript
+* Composition api
+* reativity
+```ts
+// 在ts环境下，sfc需要一个shim文件
+declare module '*.vue' {
+  import type { DefineComponent } from 'vue'
+  const component: DefineComponent<{}, {}, any>
+  export default component
+}
+declare的作用 - 告诉编译器当遇到*.vue文件的时候，ts编译时先将他们当做一个会
+export default Component的类型
 
+如果使用ts，就不用shim文件了
+从架构设计角度来说，项目概念越多，意味着设计越差
+
+另外，在sfc中需要写template和script标签，会伴随缺点
+一、不够灵活
+1. 设计不够灵活 需要 v-if/v-show/v-for -》用户可以少记忆一些东西
+2. 关注点被分离 -> 模版也好，script也好，都是解决某个关注点的一部分，在sfc中被强行分离。可以思考一个两者都很长的场景
+二、ts的类型检查
+函数组件可以最大程度的服用ts的类型检查 - 比如检查属性
+
+比如 useMousePosition 在业务代码中使用的时候，其实是没有逻辑的，完全就是渲染逻辑 
+根本就不用区分sfc，直观感受
+1. 逻辑的集中管理
+2. 强大的封装能力
+3. 不用再去记忆太多东西
+```
 ## 本地组件库调试
 
 <!-- 会在本地的node_modules下面链接到全局，在链接到项 -->
@@ -107,3 +137,5 @@ a.value = 100
 * 两者都可以监听data属性变化
 * watch需要明确监听哪个属性
 * watchEffect会根据其中的属性，自动监听其变化
+
+

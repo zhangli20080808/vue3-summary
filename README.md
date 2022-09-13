@@ -85,6 +85,7 @@ c. 提供了函数式 - 简化了 api 的设计
    b. 可用于模板和 reactive
    c. 通过.value 修改值
 2. 最佳使用方式
+
 ```jsx
 // setup 帮助初始化组件，可以返回一个render函数，render函数的返回是vnode
 // jsx的语法div会被编译成createVNode
@@ -92,13 +93,64 @@ import { ref } from 'vue'
 export default {
   setup () {
    const msg = ref('hello')
-   render ()=> {
-      return <div>{msg.value}</div>
-   }
+   return ()=> <div>{msg.value}</div>
 }
+function trigger() {}
+function track() {}
+function createRef<T>(val: T) {
+  let _val: T = val;
+  const refObj = {
+    set value(v: T) {
+      console.log('setter called');
+      _val = v;
+      if(_val !== val){
+        trigger();
+      }
+    },
+    get value() {
+      console.log('getter called');
+      track();
+      return _val;
+    }
+  };
+  return refObj;
+}
+const a = createRef(0);
+a.value = 10;
+a.value++;
+console.log(a.value);
+/**
+当set的时候 trigger 当get的时候，track？
+为什么需要track？
+1. 一个ref可以给多个组件用(也就是一个响应式值可以对应多个组件) - 因此依赖关系是不确定的。
+什么时候将组件和响应式的值绑定起来呢？vue的解决方案就是在get的时候进行绑定。就好比props传递过来msg属性，此属性
+没有在组件中使用，当msg发生变化，组件也不应该更新，反之同理
+2. track其实也是在收集依赖，和vue2差不多感觉，defineProperty.就比如只set，不get，这个组件就没必要作为依赖。读取值的时候，才能证明组件的视图依赖这个对象
+  为什么作为依赖？
+  a. 因为vue组件依赖ref，因此是ref的依赖
+  b. ref的依赖应该是一个数组，集合更好理解
+3. 为什么不能再ref的构造函数中确定依赖...？其实很简单，因为真正创建和使用它的可能不是一个地方
+4. 为什么不是vue来检查依赖，而是ref track 更新依赖？主要是 reactive 的值在相应vue环境的变化，通过观察，发现vue在使用，那就更新了
+*/
 ```
+
 3. 进阶、深入理解
 
+```jsx
+// demo 简单原理梳理
+// 1. 在组件初始化的时候，执行setup,render在mounted之后执行，每次渲染都会执行
+// 2. 点击事件，触发trigger，通知vue更新，const counter = ref(0)不会再执行，重新渲染再拿一次结果，拿到value的新值，去渲染
+export default {
+  setup () {
+   const counter = ref(0)
+   return ()=> (
+      <div>
+       {counter.value}
+         <button onClick={()=> {counter.value ++ }}>add</button>
+      </div>
+   )}
+}
+```
 
 ### toRef
 

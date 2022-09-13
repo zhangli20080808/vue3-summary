@@ -8,26 +8,28 @@
     <p>allTime : {{ allTime }}</p>
     <p>逻辑复用</p>
     <MousePosition v-if="flag" />
-    <button @click="changFlag">change flag</button>
+    <!-- <button @click="changFlag">change flag</button>
     <div>
       <p>组件库测试</p>
       <l-text tag="h2" text="hello world"></l-text>
       <l-image
         src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic2.zhimg.com%2Fv2-f3cb85d3ca5d58e80142a58e4cdb2c57_1200x500.jpg&refer=http%3A%2F%2Fpic2.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637318586&t=a745202ad33a3451a089c8fc190d13b6"
       ></l-image>
-    </div>
-    <div>ref</div>
+    </div> -->
+    <!-- <div>ref</div>
     <Ref/>
     <div>toRef</div>
     <ToRef/>
     <div>toRefs</div>
     <ToRefs/>
     <div>生命周期</div>
-    <CycleLife :msg='msg'/>
+    <CycleLife :msg='msg'/> -->
     <div>
       Watch
     </div>
     <Watch/>
+    <div>jsx template</div>
+    <JsxDemo/>
   </div>
   <router-view />
 </template>
@@ -36,11 +38,12 @@ import { computed, reactive, toRefs, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import MousePosition from './components/MousePosition'
-import Ref from './components/Ref'
-import ToRef from './components/ToRef'
-import ToRefs from './components/ToRefs'
-import CycleLife from './components/CycleLife'
-import Watch from './components/Watch'
+// import Ref from './components/Ref'
+// import ToRef from './components/ToRef'
+// import ToRefs from './components/ToRefs'
+// import CycleLife from './components/CycleLife'
+// import Watch from './components/Watch'
+import JsxDemo from './components/JsxDemo'
 
 export default {
   setup (props, context) {
@@ -85,11 +88,12 @@ export default {
   },
   components: {
     MousePosition,
-    Ref,
-    ToRef,
-    ToRefs,
-    CycleLife,
-    Watch
+    // Ref,
+    // ToRef,
+    // ToRefs,
+    // CycleLife,
+    // Watch,
+    JsxDemo
   }
 }
 </script>

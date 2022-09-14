@@ -30,6 +30,7 @@
     <Watch/>
     <div>jsx template</div>
     <JsxDemo/>
+    <TabDemo/>
   </div>
   <router-view />
 </template>
@@ -44,6 +45,7 @@ import MousePosition from './components/MousePosition'
 // import CycleLife from './components/CycleLife'
 // import Watch from './components/Watch'
 import JsxDemo from './components/JsxDemo'
+import TabDemo from './components/Tab/demo.vue'
 
 export default {
   setup (props, context) {
@@ -93,7 +95,8 @@ export default {
     // ToRefs,
     // CycleLife,
     // Watch,
-    JsxDemo
+    JsxDemo,
+    TabDemo
   }
 }
 </script>

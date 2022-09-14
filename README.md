@@ -234,4 +234,9 @@ a.value = 100;
 - watch 需要明确监听哪个属性
 - watchEffect 会根据其中的属性，自动监听其变化
 
-## 在jsx中的使用
+## jsx和template的区别
+1. 语法上不同，本质差不多。都会编译成js代码(render函数)
+2. 具体：比如，插值，自定义组件，属性和事件，条件和循环。template只能嵌套简单的js表达式，其他的需要指令比如v-if
+3. jsx已经脱离react成为ES的规范语法的一部分，vue还是自己的规范
+
+## jsx与slot

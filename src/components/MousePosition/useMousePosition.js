@@ -1,12 +1,12 @@
 // import { reactive, onMounted, onUnmounted } from 'vue'
 import { ref, onMounted, onUnmounted } from 'vue'
 
-function useMousePosition () {
+function useMousePosition() {
   const x = ref(0)
   const y = ref(0)
 
   // 修改方式 对应变量的.value属性，是稍微有点反人类的操作
-  function update (e) {
+  function update(e) {
     x.value = e.pageX
     y.value = e.pageY
   }

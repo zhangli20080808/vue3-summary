@@ -9,7 +9,7 @@ export default {
   props: {
     msg: String
   },
-  setup () {
+  setup() {
     console.log('setup')
     onBeforeMount(() => { console.log('onBeforeMount') })
     onMounted(() => { console.log('onMounted') })
@@ -18,30 +18,30 @@ export default {
     onBeforeUnmount(() => { console.log('onBeforeUnmount') })
     onUnmounted(() => { console.log('onUnmounted') })
   },
-  beforeCreate () {
+  beforeCreate() {
     console.log('beforeCreate')
   },
-  created () {
+  created() {
     console.log('created')
   },
-  beforeMount () {
+  beforeMount() {
     console.log('beforeMount')
   },
-  mount () {
+  mount() {
     console.log('mount')
   },
-  beforeUpdate () {
+  beforeUpdate() {
     console.log('beforeUpdate')
   },
-  updated () {
+  updated() {
     console.log('updated')
   },
   // beforeDestroy 改名
-  beforeUnmount () {
+  beforeUnmount() {
     console.log('beforeUnmount')
   },
   // destroy 改名
-  onUnmounted () {
+  onUnmounted() {
     console.log('onUnmounted')
   }
 

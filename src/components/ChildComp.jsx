@@ -8,7 +8,7 @@ defineComponent
 export default defineComponent({
   props: ['a'],
   name: 'child',
-  setup (props, context) {
+  setup(props, context) {
     return () => {
       return <div>{props.a} - child</div>
     }

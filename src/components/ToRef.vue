@@ -10,7 +10,7 @@
 import { toRef, reactive } from 'vue'
 export default {
   name: 'ToRef',
-  setup () {
+  setup() {
     const state = reactive({
       name: 'zl',
       age: 20

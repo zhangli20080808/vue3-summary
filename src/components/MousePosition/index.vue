@@ -9,7 +9,7 @@ import useMousePosition from './useMousePosition'
 
 export default {
   name: 'mousePosition',
-  setup () {
+  setup() {
     const { x, y } = useMousePosition()
     return {
       x,

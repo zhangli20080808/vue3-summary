@@ -19,7 +19,7 @@ import TabPanel from './TabPanel.vue'
 export default {
   components: { Tabs, TabPanel },
   methods: {
-    onTabsChange (key) {
+    onTabsChange(key) {
       console.log('tab changed', key)
     }
   }

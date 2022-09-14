@@ -141,14 +141,41 @@ console.log(a.value);
 // 1. 在组件初始化的时候，执行setup,render在mounted之后执行，每次渲染都会执行
 // 2. 点击事件，触发trigger，通知vue更新，const counter = ref(0)不会再执行，重新渲染再拿一次结果，拿到value的新值，去渲染
 export default {
-  setup () {
-   const counter = ref(0)
-   return ()=> (
+  setup() {
+    const counter = ref(0)
+    return () => (
       <div>
-       {counter.value}
-         <button onClick={()=> {counter.value ++ }}>add</button>
+        {counter.value}
+        <button
+          onClick={() => {
+            counter.value++
+          }}
+        >
+          add
+        </button>
       </div>
-   )}
+    )
+  }
+}
+```
+
+### Reative是一个代理对象 - 代理对象 proxy，复习 proxy
+
+```tsx
+const state = reactive({
+    counter : 0
+})
+state.counter ++
+
+// 上面的程序会触发代理对象的`getter` 然后`setter` ，因为`++` 不是`atomic` 原子操作
+// 具体的和`ref` 一致, Reactive也会在getter中track，在setter中trigger
+get(..) {
+    track()
+    return Reflect.get(...)
+},
+set(..) {
+    trigger()
+    Reflect.set(...)
 }
 ```
 
@@ -176,22 +203,22 @@ export default {
 function useCommonX() {
   const state = reactive({
     x: 1,
-    y: 2,
-  });
+    y: 2
+  })
   // 逻辑运行状态
   // 返回时转换为ref
-  return toRefs(state);
+  return toRefs(state)
 }
 export default {
   setup() {
     // 可以在不丢失响应式的情况下破坏解构
-    const { x, y } = useCommonX();
+    const { x, y } = useCommonX()
     return {
       x,
-      y,
-    };
-  },
-};
+      y
+    }
+  }
+}
 ```
 
 ## 深入学习？
@@ -211,15 +238,15 @@ export default {
 // .value 可以实现响应式，保持响应式
 function computed(getter) {
   const ref = {
-    value: null,
-  };
+    value: null
+  }
   setTimeout(() => {
-    ref.value = getter();
-  }, 1000);
-  return ref;
+    ref.value = getter()
+  }, 1000)
+  return ref
 }
-const a = computed(() => 100);
-a.value = 100;
+const a = computed(() => 100)
+a.value = 100
 ```
 
 3. 为什么需要 toRef toRefs？
@@ -228,15 +255,33 @@ a.value = 100;
 - 前提：针对的是响应式对象(reactive 对象封装的)非普通对象
 - 注意：不创造响应式，而是延续响应式
 
+## Ref和Reactive
+它们都是`vue` 提供的`reactive` 值。 Ref维护一个值/对象，Reactive维护一个对象的所有成员。
+
+```tsx
+const obj = ref({
+    a : 1,
+    b : 2
+})
+obj.value.a ++ //不会触发重绘
+obj.value = {...obj.value, a : 1} // 触发重绘
+const obj1 = reactive({
+    a : 1,
+    b : 2
+})
+obj1.a ++ // 触发重绘
+```
+
 ## watch 和 watchEffect 的区别
 
 - 两者都可以监听 data 属性变化
 - watch 需要明确监听哪个属性
 - watchEffect 会根据其中的属性，自动监听其变化
 
-## jsx和template的区别
-1. 语法上不同，本质差不多。都会编译成js代码(render函数)
-2. 具体：比如，插值，自定义组件，属性和事件，条件和循环。template只能嵌套简单的js表达式，其他的需要指令比如v-if
-3. jsx已经脱离react成为ES的规范语法的一部分，vue还是自己的规范
+## jsx 和 template 的区别
 
-## jsx与slot
+1. 语法上不同，本质差不多。都会编译成 js 代码(render 函数)
+2. 具体：比如，插值，自定义组件，属性和事件，条件和循环。template 只能嵌套简单的 js 表达式，其他的需要指令比如 v-if
+3. jsx 已经脱离 react 成为 ES 的规范语法的一部分，vue 还是自己的规范
+
+## jsx 与 slot

@@ -10,7 +10,7 @@
 import { ref, reactive, onMounted } from 'vue'
 export default {
   name: 'Ref',
-  setup () {
+  setup() {
     const ageRef = ref(20)
     const nameRef = ref('zhang')
     const elemRef = ref(null)

@@ -48,7 +48,7 @@ import JsxDemo from './components/JsxDemo'
 import TabDemo from './components/Tab/demo.vue'
 
 export default {
-  setup (props, context) {
+  setup(props, context) {
     // attrs slots emit  0 包装成{ value:0 }
     const route = useRoute()
     const store = useStore()
@@ -77,14 +77,14 @@ export default {
       ...toRefs(state) // 保证数据是响应式的 还有解构的功能,
     }
   },
-  data () {
+  data() {
     return {
       flag: true,
       msg: 'zl'
     }
   },
   methods: {
-    changFlag () {
+    changFlag() {
       this.flag = !this.flag
     }
   },

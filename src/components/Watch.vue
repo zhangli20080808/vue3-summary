@@ -7,7 +7,7 @@
 import { reactive, ref, toRefs, watchEffect } from 'vue'
 export default {
   name: 'Watch',
-  setup () {
+  setup() {
     const numberRef = ref(2)
     const state = reactive({
       name: 'zk',

@@ -4,9 +4,9 @@ export default defineComponent({
   name: 'Tabs',
   props: ['defaultActiveKey'],
   emits: ['change'],
-  setup (props, context) {
+  setup(props, context) {
     // 获取插槽内容
-    const children = props.slots.default()
+    const children = context.slots.default()
     const titles = children.map(panel => {
       const { key, title } = panel.props || {}
       return {
@@ -15,9 +15,10 @@ export default defineComponent({
       }
     })
     const activeKey = ref(props.defaultActiveKey)
-    function changeKey (key) {
+
+    function changeKey(key) {
       activeKey.value = key
-      context.emit('change')
+      context.emit('change', key)
     }
     const render = () => {
       return (
@@ -27,7 +28,9 @@ export default defineComponent({
             return (
               <button
                 key={key}
-                style={{ color: activeKey.value === key ? 'blue' : '#333' }}
+                style={{
+                  color: activeKey.value === key ? 'blue' : '#333'
+                }}
                 onClick={() => changeKey(key)}
               >
                 {title}
@@ -35,13 +38,11 @@ export default defineComponent({
             )
           })}
           <div>
-            {
-            children.filter(panel => {
+            {children.filter(panel => {
               const { key } = panel.props
               if (key === activeKey.value) return true
               return false
-            })
-            }
+            })}
           </div>
         </>
       )

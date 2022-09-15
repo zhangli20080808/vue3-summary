@@ -271,6 +271,9 @@ const obj1 = reactive({
 })
 obj1.a ++ // 触发重绘
 ```
+## computed
+- computed会根据依赖重算	
+- 提供了基于依赖的缓存
 
 ## watch 和 watchEffect 的区别
 
@@ -285,3 +288,5 @@ obj1.a ++ // 触发重绘
 3. jsx 已经脱离 react 成为 ES 的规范语法的一部分，vue 还是自己的规范
 
 ## jsx 与 slot
+## Effect Scope
+副作用范围（Effect Scope)用于批量回收定义的副作用。

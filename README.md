@@ -159,7 +159,7 @@ export default {
 }
 ```
 
-### Reative是一个代理对象 - 代理对象 proxy，复习 proxy
+### Reative 是一个代理对象 - 代理对象 proxy，复习 proxy
 
 ```tsx
 const state = reactive({
@@ -255,24 +255,56 @@ a.value = 100
 - 前提：针对的是响应式对象(reactive 对象封装的)非普通对象
 - 注意：不创造响应式，而是延续响应式
 
-## Ref和Reactive
-它们都是`vue` 提供的`reactive` 值。 Ref维护一个值/对象，Reactive维护一个对象的所有成员。
+## Ref 和 Reactive
+
+它们都是`vue` 提供的`reactive` 值。 Ref 维护一个值/对象，Reactive 维护一个对象的所有成员。
 
 ```tsx
 const obj = ref({
-    a : 1,
-    b : 2
+  a: 1,
+  b: 2
 })
-obj.value.a ++ //不会触发重绘
-obj.value = {...obj.value, a : 1} // 触发重绘
+obj.value.a++ //不会触发重绘
+obj.value = { ...obj.value, a: 1 } // 触发重绘
 const obj1 = reactive({
-    a : 1,
-    b : 2
+  a: 1,
+  b: 2
 })
-obj1.a ++ // 触发重绘
+obj1.a++ // 触发重绘
 ```
+## toRef 和 toRefs ，这两个函数可以将值转换为`ref` 
+
+```tsx
+import { defineComponent, reactive, toRef, toRefs } from "vue"
+export default defineComponent({
+	setup() {
+		const state = reactive({
+			a : 1,
+			b : '-' 
+		})
+		const aRef = toRef(state, 'a')
+		const bRef = toRef(state, 'b')
+		// 等价于
+		//const refs = toRefs(state)
+		//const aRef === refs.a
+		//const bRef === refs.b
+		return () => {
+			return <>
+				<h1>aRef : {aRef.value}</h1>
+				<h1>aRef : {aRef}</h1>
+				<h1>bRef : {bRef.value}</h1>
+				<h1>bRef : {bRef}</h1>
+				<button onClick={() => state.a++}>state.a++</button>
+				<button onClick={() => aRef.value++}>aRef.a++</button>
+			</>
+		}
+	}
+})
+```
+
 ## computed
-- computed会根据依赖重算	
+
+- computed 会根据依赖重算
 - 提供了基于依赖的缓存
 
 ## watch 和 watchEffect 的区别
@@ -288,5 +320,33 @@ obj1.a ++ // 触发重绘
 3. jsx 已经脱离 react 成为 ES 的规范语法的一部分，vue 还是自己的规范
 
 ## jsx 与 slot
+
+## jsx 实现作用域 slot
+
+```jsx
+```
+
+## script setup 特性
+主要是 代码中 >3.2.0
+
+```vue
+<!--  defineProps -->
+<script setup>
+  import { ref } from 'vue';
+  // 定义属性
+  const props = defineProps({
+    msg: String,
+    age: Number
+  });
+
+  const count = ref(0);
+<script>
+<template>
+  <h1>{{ msg }}</h1>
+  <button type="button" @click="count++">count is {{ count }}</button>
+</template>
+```
+
 ## Effect Scope
+
 副作用范围（Effect Scope)用于批量回收定义的副作用。

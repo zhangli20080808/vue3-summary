@@ -1,4 +1,4 @@
-import { defineComponent ,effects} from 'vue'
+import { defineComponent } from 'vue'
 
 /**
 defineComponent
